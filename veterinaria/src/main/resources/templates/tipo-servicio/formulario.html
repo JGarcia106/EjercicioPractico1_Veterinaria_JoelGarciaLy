@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de tipo de servicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+    <header class="bg-success text-white text-center p-4">
+        <h1>Clínica Veterinaria</h1>
+    </header>
+
+    <main class="container py-4">
+        <h2 th:text="${tipoServicio.id == null ? 'Agregar tipo de servicio' : 'Editar tipo de servicio'}">
+            Tipo de servicio
+        </h2>
+
+        <form th:action="@{/tipo-servicio/guardar}"
+              th:object="${tipoServicio}" method="post">
+
+            <input type="hidden" th:field="*{id}">
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" class="form-control"
+                       th:field="*{nombre}" maxlength="100" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea id="descripcion" class="form-control"
+                          th:field="*{descripcion}" maxlength="255"
+                          rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-secondary"
+               th:href="@{/tipo-servicio/listado}">Cancelar</a>
+        </form>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3">
+        Clínica Veterinaria - Cuidado y bienestar animal
+    </footer>
+
+</body>
+</html>

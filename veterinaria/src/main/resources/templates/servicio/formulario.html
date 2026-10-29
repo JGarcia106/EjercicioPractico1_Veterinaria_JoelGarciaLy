@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de servicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+    <header class="bg-success text-white text-center p-4">
+        <h1>Clínica Veterinaria</h1>
+    </header>
+
+    <main class="container py-4">
+        <h2 th:text="${servicio.id == null ? 'Agregar servicio' : 'Editar servicio'}">
+            Servicio veterinario
+        </h2>
+
+        <form th:action="@{/servicio/guardar}"
+              th:object="${servicio}" method="post">
+
+            <input type="hidden" th:field="*{id}">
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" class="form-control"
+                       th:field="*{nombre}" maxlength="100" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio en colones</label>
+                <input type="number" id="precio" class="form-control"
+                       th:field="*{precio}" min="0.01" step="0.01" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="duracionMinutos" class="form-label">
+                    Duración en minutos
+                </label>
+                <input type="number" id="duracionMinutos" class="form-control"
+                       th:field="*{duracionMinutos}" min="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="tipoServicio" class="form-label">
+                    Tipo de servicio
+                </label>
+                <select id="tipoServicio" class="form-select"
+                        th:field="*{tipoServicio}" required>
+                    <option value="">Seleccione un tipo</option>
+                    <option th:each="tipo : ${tiposServicio}"
+                            th:value="${tipo.id}"
+                            th:text="${tipo.nombre}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-secondary" th:href="@{/servicio/listado}">
+                Cancelar
+            </a>
+        </form>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3">
+        Clínica Veterinaria - Cuidado y bienestar animal
+    </footer>
+
+</body>
+</html>

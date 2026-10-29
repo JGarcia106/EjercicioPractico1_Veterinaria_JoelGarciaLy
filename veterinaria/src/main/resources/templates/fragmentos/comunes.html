@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <header th:fragment="encabezado"
+            class="bg-success text-white text-center p-4">
+        <h1 th:text="#{aplicacion.titulo}">Clinica Veterinaria</h1>
+        <p>Cuidamos la salud y el bienestar de tus mascotas</p>
+    </header>
+
+    <nav th:fragment="navegacion"
+         class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand"
+               th:href="@{/}"
+               th:text="#{plantilla.inicio}">Inicio</a>
+
+            <a class="nav-link text-white"
+               th:href="@{/tipo-servicio/listado}"
+               th:text="#{plantilla.tiposServicio}">Tipos de servicio</a>
+
+            <a class="nav-link text-white"
+               th:href="@{/servicio/listado}"
+               th:text="#{plantilla.servicios}">Servicios</a>
+
+            <a class="nav-link text-white"
+               th:href="@{/cita/listado}"
+               th:text="#{plantilla.citas}">Citas</a>
+        </div>
+    </nav>
+
+    <footer th:fragment="pie"
+            class="bg-dark text-white text-center p-3">
+        <span th:text="#{plantilla.pie}">
+            Clinica Veterinaria - Cuidado y bienestar animal
+        </span>
+    </footer>
+
+</body>
+</html>

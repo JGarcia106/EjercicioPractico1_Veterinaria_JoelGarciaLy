@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Citas veterinarias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+    <header class="bg-success text-white text-center p-4">
+        <h1>Clínica Veterinaria</h1>
+        <p>Cuidamos la salud y el bienestar de tus mascotas</p>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">Inicio</a>
+            <a class="nav-link text-white" th:href="@{/tipo-servicio/listado}">
+                Tipos de servicio
+            </a>
+            <a class="nav-link text-white" th:href="@{/servicio/listado}">
+                Servicios
+            </a>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <h2 class="mb-3">Citas registradas</h2>
+
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Mascota</th>
+                    <th>Propietario</th>
+                    <th>Fecha</th>
+                    <th>Servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cita : ${citas}">
+                    <td th:text="${cita.nombreMascota}"></td>
+                    <td th:text="${cita.nombrePropietario}"></td>
+                    <td th:text="${#temporals.format(cita.fecha, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${cita.servicio.nombre}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-secondary" th:href="@{/}">
+            Volver al inicio
+        </a>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3">
+        Clínica Veterinaria - Cuidado y bienestar animal
+    </footer>
+
+</body>
+</html>

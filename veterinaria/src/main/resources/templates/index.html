@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{aplicacion.titulo}">Clinica Veterinaria</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos/comunes :: encabezado}"></header>
+
+    <nav th:replace="~{fragmentos/comunes :: navegacion}"></nav>
+
+    <main class="container py-5">
+
+        <section class="text-center mb-5">
+            <h2 th:text="#{inicio.bienvenida}">
+                Bienvenido a nuestra clinica veterinaria
+            </h2>
+            <p th:text="#{inicio.descripcion}">
+                Ofrecemos atencion y cuidado para tus mascotas.
+            </p>
+        </section>
+
+        <section class="bg-light p-4 rounded mb-4">
+            <h3 th:text="#{inicio.promocion}">Promocion especial</h3>
+            <p th:text="#{inicio.promocion.descripcion}">
+                Consulta nuestros servicios disponibles.
+            </p>
+
+            <a class="btn btn-success" th:href="@{/servicio/listado}">
+                Ver servicios
+            </a>
+        </section>
+
+        <section class="border rounded p-4">
+            <h3 th:text="#{plantilla.contacto}">Contacto</h3>
+
+            <form>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="correo" class="form-label">
+                        Correo electronico
+                    </label>
+                    <input type="email" id="correo" class="form-control"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea id="mensaje" class="form-control"
+                              rows="4" required></textarea>
+                </div>
+
+                <button type="button" class="btn btn-success">
+                    Enviar
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+
+</body>
+</html>
